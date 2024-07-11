@@ -1,0 +1,132 @@
+<div class="container mt-5">
+  <h2 class="text-center">Add Employee</h2>
+  <form
+    action="
+  "
+    [formGroup]="createUserForm"
+  >
+    <div>
+      <label for="name"> name</label>
+
+      <input
+        matInput
+        placeholder="zezo ..."
+        formControlName="name"
+        required
+        class="form-control is-invalid"
+        [ngClass]="{
+        'is-valid': createUserForm.get('name')?.valid && createUserForm.get('name')?.touched&&createUserForm.get('name')?.errors?.['required'],
+        'is-invalid': createUserForm.get('name')?.invalid && createUserForm.get('name')?.touched&&createUserForm.get('name')?.errors?.['required']
+      }"
+      />
+      @if
+      (!createUserForm.get('name')?.valid&&createUserForm.get('name')?.touched)
+      { @if (createUserForm.get('name')?.errors?.['required']) {
+      <div class="text-danger mt-1">Name is required</div>
+      } }
+    </div>
+    <div class="my-3">
+      <label for="email"> email</label>
+
+      <input
+        matInput
+        placeholder="zezo ..."
+        formControlName="email"
+        required
+        class="form-control is-invalid"
+        [ngClass]="{
+        'is-valid': createUserForm.get('email')?.valid && createUserForm.get('email')?.touched&&createUserForm.get('email')?.errors?.['required']||createUserForm.get('email')?.errors?.['email'],
+        'is-invalid': createUserForm.get('email')?.invalid && createUserForm.get('email')?.touched&&createUserForm.get('email')?.errors?.['required']||createUserForm.get('email')?.errors?.['email']
+      }"
+      />
+      @if
+      (!createUserForm.get('email')?.valid&&createUserForm.get('email')?.touched)
+      { @if (createUserForm.get('email')?.errors?.['required']) {
+      <div class="text-danger mt-1">email is required</div>
+      } @if (createUserForm.get('email')?.errors?.['email']) {
+      <div class="text-danger mt-1">email is invalid</div>
+      } }
+    </div>
+
+    <div class="my-3">
+      <label for="position">position</label>
+      <input
+        matInput
+        placeholder="angular ..."
+        formControlName="position"
+        required
+        class="form-control"
+        [ngClass]="{
+      'is-valid': createUserForm.get('position')?.valid && createUserForm.get('position')?.touched&&createUserForm.get('position')?.errors?.['required'],
+      'is-invalid': createUserForm.get('position')?.invalid && createUserForm.get('position')?.touched&&createUserForm.get('position')?.errors?.['required']
+    }"
+      />
+
+      @if
+      (!createUserForm.get('position')?.valid&&createUserForm.get('position')?.touched)
+      { @if (createUserForm.get('position')?.errors?.['required']) {
+      <div class="text-danger mt-1">position is required</div>
+      } }
+    </div>
+
+    <div class="my-3">
+      <label for="department">department</label>
+
+      <input
+        matInput
+        placeholder="Front-End"
+        formControlName="department"
+        required
+        class="form-control"
+        [ngClass]="{
+      'is-valid': createUserForm.get('department')?.valid && createUserForm.get('department')?.touched&&createUserForm.get('department')?.errors?.['required'],
+      'is-invalid': createUserForm.get('department')?.invalid && createUserForm.get('department')?.touched&&createUserForm.get('department')?.errors?.['required']
+    }"
+      />
+
+      @if
+      (!createUserForm.get('department')?.valid&&createUserForm.get('department')?.touched)
+      { @if (createUserForm.get('department')?.errors?.['required']) {
+      <div class="text-danger mt-1">department is required</div>
+      } }
+    </div>
+
+    <div>
+      <label for="salary">salary</label>
+      <input
+        matInput
+        placeholder="20000"
+        formControlName="salary"
+        required
+        class="form-control"
+        type="number"
+        [ngClass]="{
+            'is-valid': createUserForm.get('salary')?.valid && createUserForm.get('salary')?.touched&&createUserForm.get('salary')?.errors?.['required'],
+            'is-invalid': createUserForm.get('salary')?.invalid && createUserForm.get('salary')?.touched&&createUserForm.get('salary')?.errors?.['required']
+          }"
+      />
+      @if
+      (!createUserForm.get('salary')?.valid&&createUserForm.get('salary')?.touched)
+      { @if (createUserForm.get('salary')?.errors?.['required']) {
+      <div class="text-danger mt-1">salary is required</div>
+      } }
+    </div>
+
+
+    <div class="d-flex justify-content-between">
+      <button class="mt-3"  (click)="goBack()">back</button>
+
+      <button
+        [disabled]="createUserForm.invalid"
+        type="submit"
+        class="mt-3"
+        (click)="
+          nameButton == 'Submit' ? addEmployee(createUserForm) : editEmployee(createUserForm)
+        "
+      >
+        {{ nameButton }}
+      </button>
+
+    </div>
+  </form>
+</div>
